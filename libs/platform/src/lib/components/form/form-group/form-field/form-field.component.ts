@@ -145,6 +145,12 @@ export class FormFieldComponent
         this._columns = <Column>coerceNumberProperty(value);
     }
 
+    /**
+     * marks field as disabled. used in reactive form approach.
+     */
+    @Input()
+    disabled: boolean;
+
     @Output()
     onChange: EventEmitter<string> = new EventEmitter<string>();
 
@@ -166,7 +172,8 @@ export class FormFieldComponent
     protected _destroyed = new Subject<void>();
 
     constructor(private _cd: ChangeDetectorRef) {
-        this.formControl = new FormControl();
+        // provides capability to make a field disabled. useful in reactive form approach.
+        this.formControl = new FormControl({ value: null, disabled: this.disabled });
     }
 
     ngOnInit(): void {
@@ -251,7 +258,10 @@ export class FormFieldComponent
             if (this.required) {
                 this.validators.push(Validators.required);
             }
-
+            // if form control is disabled, in reactive form approach
+            if (this.disabled) {
+                this._control.ngControl.control.disable();
+            }
             this.formGroup.addControl(this.id, this._control.ngControl.control);
             this._control.ngControl.control.setValidators(Validators.compose(this.validators));
             this._control.ngControl.control.updateValueAndValidity();
@@ -267,7 +277,9 @@ export class FormFieldComponent
     private updateControlProperties() {
         if (this._control && this._editable) {
             this._control.id = this.id;
-            this._control.placeholder = this.placeholder;
+            if (this.placeholder && !this._control.placeholder) {
+                this._control.placeholder = this.placeholder;
+            }
         }
     }
 }
