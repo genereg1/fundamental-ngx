@@ -5,8 +5,17 @@ import { FormModule as FdFormModule } from '@fundamental-ngx/core';
 import { InputComponent } from './input.component';
 
 @NgModule({
-    declarations: [InputComponent],
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, FdFormModule],
-    exports: [InputComponent]
+    declarations: [
+        InputComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        FdFormModule
+    ],
+    exports: [
+        InputComponent
+    ]
 })
-export class FdpInputModule {}
+export class PlatformInputModule {}

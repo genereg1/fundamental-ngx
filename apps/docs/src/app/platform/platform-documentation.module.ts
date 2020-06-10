@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SharedDocumentationModule } from '../documentation/shared-documentation.module';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './platform-documentation.routes';
@@ -20,6 +20,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
         RouterModule.forChild(ROUTES),
         ScrollingModule
     ],
-    providers: [{ provide: 'CURRENT_LIB', useValue: 'platform' }, StackblitzService]
+    providers: [
+        { provide: 'CURRENT_LIB', useValue: 'platform' },
+        StackblitzService
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PlatformDocumentationModule {}

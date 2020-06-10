@@ -16,14 +16,30 @@
  *
  *
  */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Optional, Self } from '@angular/core';
-import { FormFieldControl } from '../form-control';
+import { ChangeDetectionStrategy,
+         ChangeDetectorRef, 
+         Component, 
+         Input, 
+         Optional, 
+         Self, 
+         ViewChild, 
+         ElementRef, 
+         Output, 
+         EventEmitter } from '@angular/core';
+import { FormFieldControl, Status } from '../form-control';
 import { NgControl, NgForm } from '@angular/forms';
 import { BaseInput } from '../base.input';
+import { stateType } from '@fundamental-ngx/core';
 
-const VALID_INPUT_TYPES = ['text', 'number', 'email'];
 
-export type InputType = 'text' | 'number' | 'email';
+const VALID_INPUT_TYPES = [
+    'text',
+    'number',
+    'email',
+    'password'
+];
+
+type InputType = 'text' | 'number' | 'email' | 'password';
 
 /**
  * Input field implementation to be compliant with our FormGroup/FormField design and also to
@@ -34,12 +50,39 @@ export type InputType = 'text' | 'number' | 'email';
     selector: 'fdp-input',
     templateUrl: 'input.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [{ provide: FormFieldControl, useExisting: InputComponent, multi: true }]
+    providers: [
+        { provide: FormFieldControl, useExisting: InputComponent, multi: true }
+    ]
 })
 export class InputComponent extends BaseInput {
+
+    /** defines the input type of the input. */
     @Input()
     type: InputType = 'text';
+ 
+    /** Whether the input is read-only. */
+    @Input()
+    readonly: boolean = false;
 
+    /** click event to emit */
+    @Output()
+    readonly click: EventEmitter<InputComponent> = new EventEmitter();
+    
+    /** Binds to control aria-labelledBy attribute */
+    @Input()
+    ariaLabelledBy: string = null;
+
+    /** Sets control aria-label attribute value */
+    @Input()
+    ariaLabel: string = null;
+
+    state: Status | stateType = 'default';
+
+    /** @hidden */
+    @ViewChild('inputElement')
+    inputElement: ElementRef;
+
+    /** return the value in the text box */
     @Input()
     get value(): any {
         return super.getValue();
@@ -49,21 +92,34 @@ export class InputComponent extends BaseInput {
         super.setValue(value);
     }
 
-    constructor(
-        protected _cd: ChangeDetectorRef,
-        @Optional() @Self() public ngControl: NgControl,
-        @Optional() @Self() public ngForm: NgForm
-    ) {
+    /** @hidden */
+    elementRef(): ElementRef<any> {
+        return this.inputElement;
+    }
+
+
+    constructor(protected _cd: ChangeDetectorRef,
+                @Optional() @Self() public ngControl: NgControl,
+                @Optional() @Self() public ngForm: NgForm) {
+
+
         super(_cd, ngControl, ngForm);
+    }
+
+    /** @hidden change formcontrol value, emits the event*/
+    onClick(event: KeyboardEvent | MouseEvent) {
+        event.stopPropagation();
+        if (!this.disabled) {
+            if (super.getValue() !== undefined) {
+                this.onChange(super.getValue());
+                this.click.emit(this);
+            }
+        }
     }
 
     ngOnInit(): void {
         if (!this.type || VALID_INPUT_TYPES.indexOf(this.type) === -1) {
             throw new Error(` Input type ${this.type} is not supported`);
         }
-    }
-
-    ngAfterViewInit(): void {
-        super.ngAfterViewInit();
     }
 }

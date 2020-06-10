@@ -82,6 +82,11 @@ export const ROUTES: Routes = [
                 loadChildren: () =>
                     import('./component-docs/platform-info-label/platform-info-label-docs-module').then((m) => m.PlatformInfoLabelDocsModule)
             },
+            {
+                path: 'input',
+                loadChildren: () =>
+                    import('./component-docs/platform-input/platform-input-docs.module').then((m) => m.PlatformInputDocsModule)
+            },
         ]
     }
 ];
