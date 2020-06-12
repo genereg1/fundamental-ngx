@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputComponent } from './input.component';
 import { CommonModule } from '@angular/common';
 import { FormModule as FdFormModule } from '@fundamental-ngx/core';
-import { InputComponent } from './input.component';
+import { FormsModule as coreFormModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -10,8 +10,7 @@ import { InputComponent } from './input.component';
     ],
     imports: [
         CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
+        coreFormModule,
         FdFormModule
     ],
     exports: [

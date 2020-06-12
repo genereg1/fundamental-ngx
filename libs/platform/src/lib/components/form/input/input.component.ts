@@ -24,8 +24,7 @@ import { ChangeDetectionStrategy,
          Self, 
          ViewChild, 
          ElementRef, 
-         Output, 
-         EventEmitter } from '@angular/core';
+         OnInit} from '@angular/core';
 import { FormFieldControl, Status } from '../form-control';
 import { NgControl, NgForm } from '@angular/forms';
 import { BaseInput } from '../base.input';
@@ -39,7 +38,7 @@ const VALID_INPUT_TYPES = [
     'password'
 ];
 
-type InputType = 'text' | 'number' | 'email' | 'password';
+export type InputType = 'text' | 'number' | 'email' | 'password';
 
 /**
  * Input field implementation to be compliant with our FormGroup/FormField design and also to
@@ -54,29 +53,13 @@ type InputType = 'text' | 'number' | 'email' | 'password';
         { provide: FormFieldControl, useExisting: InputComponent, multi: true }
     ]
 })
-export class InputComponent extends BaseInput {
+export class InputComponent extends BaseInput implements OnInit {
 
     /** defines the input type of the input. */
     @Input()
     type: InputType = 'text';
- 
-    /** Whether the input is read-only. */
-    @Input()
-    readonly: boolean = false;
 
-    /** click event to emit */
-    @Output()
-    readonly click: EventEmitter<InputComponent> = new EventEmitter();
-    
-    /** Binds to control aria-labelledBy attribute */
-    @Input()
-    ariaLabelledBy: string = null;
-
-    /** Sets control aria-label attribute value */
-    @Input()
-    ariaLabel: string = null;
-
-    state: Status | stateType = 'default';
+    state: Status = 'default';
 
     /** @hidden */
     @ViewChild('inputElement')
@@ -104,17 +87,6 @@ export class InputComponent extends BaseInput {
 
 
         super(_cd, ngControl, ngForm);
-    }
-
-    /** @hidden change formcontrol value, emits the event*/
-    onClick(event: KeyboardEvent | MouseEvent) {
-        event.stopPropagation();
-        if (!this.disabled) {
-            if (super.getValue() !== undefined) {
-                this.onChange(super.getValue());
-                this.click.emit(this);
-            }
-        }
     }
 
     ngOnInit(): void {

@@ -9,22 +9,10 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class PlatformInputAutoCompleteValidationExampleComponent implements OnInit {
 
-submitted = false;
-inputText: string = '';
-state = false;
-
-    /** Whether the combobox is opened. */
-    @Input()
-    open: boolean = false;
-
-    /**
-     * The template with which to display the individual listed items.
-     * Use it by passing an ng-template with implicit content. See examples for more info.
-     */
-    @Input()
-    itemTemplate: TemplateRef<any>;
-
-options: string[];
+    submitted = false;
+    inputText: string = '';
+    state = false;
+    options: string[];
 
     public sportsData: string[] = [
         'American Football',
@@ -38,19 +26,28 @@ options: string[];
         'Snooker',
         'Tennis'
     ];
-  constructor(private fb: FormBuilder) { }
 
-  ngOnInit() {
-    /*this.autoCompleteFormRegister = new FormGroup({
-       inputControl: new FormControl('', Validators.required)
-    });*/
-    this.options = this.sportsData;
-  }
+    /** Whether the combobox is opened. */
+    @Input()
+    open: boolean = false;
 
-  filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.sportsData.filter((item: string) => item.toLowerCase().includes(filterValue));
-  }
+    /**
+     * The template with which to display the individual listed items.
+     * Use it by passing an ng-template with implicit content. See examples for more info.
+     */
+    @Input()
+    itemTemplate: TemplateRef<any>;
+
+    constructor(private fb: FormBuilder) { }
+
+    ngOnInit() {
+        this.options = this.sportsData;
+    }
+
+    filter(value: string): string[] {
+        const filterValue = value.toLowerCase();
+        return this.sportsData.filter((item: string) => item.toLowerCase().includes(filterValue));
+    }
 
     onSearchChange() {
         this.options = this.filter(this.inputText);

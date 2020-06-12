@@ -1,39 +1,29 @@
-<div fd-form-item>
-    <label fd-form-label for="input-49">
-        Default Input
-    </label>
-    <fdp-input [type]="'text'" placeholder="Enter value here"></fdp-input>
-</div>
-
-<div fd-form-item>
-    <label fd-form-label for="input-50">
-     Input Text
-    </label>
-    <fdp-input [type]="'text'" placeholder="Enter text value here"></fdp-input>
-</div>
-
-<div fd-form-item>
-    <label fd-form-label for="input-51">
-       Input Number Text
-    </label>
-    <fdp-input [type]="'number'" placeholder="Enter number here"></fdp-input>
-</div>
-
-<div fd-form-item>
-    <label fd-form-label for="input-52">
-       Input Compact Type
-    </label>
-    <fdp-input [type]="'number'" placeholder="Enter value here"  [contentDensity]="'compact'"></fdp-input>
-</div>
-<div fd-form-item>
-    <label fd-form-label for="input-52">
-       Input Read Only Type
-    </label>
-	<fdp-input [type]="'text'" id="form-input-1" [readonly]="true"  [ariaLabelledBy]="'label'"></fdp-input>
-</div>
-<div fd-form-item>
-    <label fd-form-label for="input-52">
-       Input Disableds Type
-    </label>
-    <fdp-input [type]="'text'" id="form-input-1" [ariaLabelledBy]="'label'" [disabled]="true"></fdp-input>
-</div>
+<form #myForm="ngForm">
+	<fdp-form-group [formGroup]="formTypesGroupRegister">
+		<fdp-form-field #ffl1 label="Default Input" [id]="'input1'" name="reactiveFormInput" zone=“zLeft” rank="1"
+			 [placeholder]="'Field placeholder text'">
+           <fdp-input id="fdp-input-1" name="deafultTextInput" [type]="'text'" placeholder="Enter value here"></fdp-input>
+		</fdp-form-field>
+		<fdp-form-field #ffl1 label="Text Input" [id]="'input2'" name="reactiveFormInput" zone=“zLeft” rank="1"
+			 [placeholder]="'Field placeholder text'">
+	<fdp-input id="fdp-input-2" name="textInput" [type]="'text'" placeholder="Enter text value here"></fdp-input>
+		</fdp-form-field>
+		<fdp-form-field #ffl1 label="Number Text Box" [id]="'input3'" name="reactiveFormInput" zone=“zLeft” rank="1"
+			 [placeholder]="'Field placeholder text'">
+	<fdp-input [type]="'number'" id="fdp-input-3" name="numberTextBox" placeholder="Enter number here"></fdp-input>
+		</fdp-form-field>
+		<fdp-form-field #ffl1 label="Compact Text Box" [id]="'input4'" name="reactiveFormInput" zone=“zLeft” rank="1"
+			 [placeholder]="'Field placeholder text'" >
+	<fdp-input [type]="'text'" id="fdp-input-4" name="compactTextBox" placeholder="Enter value here"
+		[contentDensity]="'compact'"></fdp-input>
+		</fdp-form-field>
+		<fdp-form-field #ffl1 label="ReadOnly Text Box" [id]="'input5'" name="reactiveFormInput" zone=“zLeft” rank="1"
+			 [placeholder]="'Field placeholder text'">
+	<fdp-input [type]="'text'" id="fdp-input-5" name="ReadOnlyText" [readonly]="true"></fdp-input>
+		</fdp-form-field>
+		<fdp-form-field #ffl1 label="Disabled Text Box" [id]="'input6'" name="reactiveFormInput" zone=“zLeft” rank="1"
+			 [placeholder]="'Field placeholder text'">
+	<fdp-input [type]="'text'" id="fdp-input-6" name="disabledTextBox" [disabled]="true"></fdp-input>
+		</fdp-form-field>
+	</fdp-form-group>
+</form>

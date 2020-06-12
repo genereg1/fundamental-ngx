@@ -7,14 +7,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class PlatformInputReactiveValidationExampleComponent implements OnInit {
 
-formGroupRegister: FormGroup;
-submitted = false;
-validate = [Validators.requiredTrue];
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit() {
-    this.formGroupRegister = new FormGroup({});
-  }
+    formGroupRegister: FormGroup;
+    submitted = false;
+    validate = [Validators.requiredTrue];
+    constructor(private fb: FormBuilder) { }
+    
+    ngOnInit() {
+        this.formGroupRegister = new FormGroup({});
+    }
 
 
     hasError() {
