@@ -33,6 +33,13 @@ export const ROUTES: Routes = [
                     )
             },
             {
+                path: 'checkbox-group',
+                loadChildren: () =>
+                    import(
+                        './component-docs/platform-forms/platform-checkbox-group/platform-checkbox-group-docs.module'
+                    ).then((m) => m.PlatformCheckboxGroupDocsModule)
+            },
+            {
                 path: 'link',
                 loadChildren: () =>
                     import('./component-docs/platform-link/platform-link.module').then((m) => m.PlatformLinkDocsModule)
@@ -80,8 +87,10 @@ export const ROUTES: Routes = [
             {
                 path: 'info-label',
                 loadChildren: () =>
-                    import('./component-docs/platform-info-label/platform-info-label-docs-module').then((m) => m.PlatformInfoLabelDocsModule)
-            },
+                    import('./component-docs/platform-info-label/platform-info-label-docs-module').then(
+                        (m) => m.PlatformInfoLabelDocsModule
+                    )
+            }
         ]
     }
 ];

@@ -18,6 +18,8 @@ export class PlatformCheckboxChange {
  * Some part of code/idea has been taken from above mentioned and has been implemented to work with platform form.
  * primeng: https://primefaces.org/primeng/showcase/#/checkbox
  */
+let nextUniqueId: number = 0;
+
 @Component({
     selector: 'fdp-checkbox',
     templateUrl: './checkbox.component.html',
@@ -115,6 +117,9 @@ export class CheckboxComponent extends BaseInput implements AfterViewInit {
         private _ngZone: NgZone
     ) {
         super(_changeDetector, ngControl, ngForm);
+        this.id = `fdp-checkbox-${nextUniqueId}`;
+        this.name = `fdp-checkbox-${nextUniqueId}`;
+        nextUniqueId = nextUniqueId + 1;
     }
 
     /** ControlvalueAccessor */

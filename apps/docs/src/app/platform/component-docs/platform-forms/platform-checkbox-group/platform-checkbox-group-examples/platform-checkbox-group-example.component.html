@@ -1,0 +1,43 @@
+<h3>Checkbox group created from given list of values</h3>
+<fdp-form-group [multiLayout]="true" [formGroup]="form1">
+    <fdp-form-field #fl1 [id]="'seasons'" [label]="'Seasons in my country: '" zone="zLeft" rank="1">
+        <fdp-checkbox-group
+            [list]="seasons"
+            [hasNoValue]="true"
+            [noValueLabel]="'(No Selection)'"
+            [name]="'seasonsInIndia'"
+            [isInline]="true"
+            [formControl]="fl1.formControl"
+        ></fdp-checkbox-group>
+    </fdp-form-field>
+</fdp-form-group>
+
+<p>{{ form1.getRawValue() | json }}</p>
+
+<h3>Checkbox group created from given checkboxes</h3>
+<fdp-form-group [multiLayout]="true" [formGroup]="form2">
+    <fdp-form-field #fl2 [id]="'fruits'" [label]="'My favorite fruits: '" zone="zLeft" rank="1">
+        <fdp-checkbox-group [name]="'fruits'" [formControl]="fl2.formControl">
+            <fdp-checkbox [value]="'apple'" [label]="'Apple'"></fdp-checkbox>
+            <fdp-checkbox [value]="'banana'" [label]="'Banana'"></fdp-checkbox>
+            <fdp-checkbox [value]="'guava'" [label]="'Guava'"></fdp-checkbox>
+            <fdp-checkbox [value]="'papaya'" [label]="'Papaya'"></fdp-checkbox>
+        </fdp-checkbox-group>
+    </fdp-form-field>
+</fdp-form-group>
+
+<p>{{ form2.getRawValue() | json }}</p>
+<!-- <p>Declarative Approach Example 1</p>
+<fdp-checkbox-group [id]="'declarative1'" [name]="'seasonsInIndia'" [(ngModel)]="favoriteOptions2">
+    <fdp-checkbox [value]="'Winter'" [label]="'Winter'"></fdp-checkbox>
+    <fdp-checkbox [value]="'Summer'" [label]="'Summer'"></fdp-checkbox>
+</fdp-checkbox-group>
+
+<p>Declarative Approach Example 2</p>
+<fdp-checkbox-group [id]="'declarative2'" [name]="'seasonsInIndia'" [(ngModel)]="favoriteOptions3">
+    <fdp-checkbox [value]="'Winter'" [label]="'Winter'"></fdp-checkbox>
+    <fdp-checkbox [value]="'Summer'" [label]="'Summer'"></fdp-checkbox>
+    <fdp-checkbox [value]="'Spring'" [label]="'Spring'"></fdp-checkbox>
+</fdp-checkbox-group>
+<div>Example 1: selected {{ favoriteOptions1 }}</div>
+<div>Example 1: selected {{ favoriteOptions2 }}</div> -->
