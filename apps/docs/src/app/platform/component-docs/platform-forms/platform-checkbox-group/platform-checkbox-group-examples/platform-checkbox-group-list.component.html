@@ -1,0 +1,88 @@
+<h3>Checkboxes created from given list of values</h3>
+<p>Inline checkboxes</p>
+<fdp-form-group [multiLayout]="true" [formGroup]="form1">
+    <fdp-form-field #fl1 [id]="'seasons'" [label]="'Seasons in my country: '" zone="zLeft" rank="1">
+        <fdp-checkbox-group
+            [list]="seasons"
+            [name]="'seasonsInIndia'"
+            [isInline]="true"
+            [formControl]="fl1.formControl"
+        ></fdp-checkbox-group>
+    </fdp-form-field>
+</fdp-form-group>
+<span style="margin-left: 2rem;">Seasons: {{ form1.controls.seasons.value }}</span>
+<br />
+<br />
+
+<p>Pre-selection based on value passed</p>
+<fdp-form-group [multiLayout]="true" [formGroup]="form2">
+    <fdp-form-field #fl2 [id]="'sports'" [label]="'Sports interested in: '" zone="zLeft" rank="1">
+        <fdp-checkbox-group
+            [list]="sports"
+            [name]="'sports'"
+            [value]="favsports"
+            [formControl]="fl2.formControl"
+        ></fdp-checkbox-group>
+    </fdp-form-field>
+</fdp-form-group>
+<span style="margin-left: 2rem;">Sports: {{ form2.controls.sports.value }}</span>
+<br />
+<br />
+
+<p>Disabled checkbox group</p>
+<fdp-form-group [multiLayout]="true" [formGroup]="form3">
+    <fdp-form-field #fl3 [id]="'sports'" [label]="'Sports interested in: '" zone="zLeft" rank="1">
+        <fdp-checkbox-group
+            [list]="sports"
+            [name]="'sports'"
+            [disabled]="true"
+            [formControl]="fl3.formControl"
+        ></fdp-checkbox-group>
+    </fdp-form-field>
+</fdp-form-group>
+<br />
+<br />
+
+<h3>Checkboxes created from from list of selectItem Objects</h3>
+<p>Inline checkboxes</p>
+<fdp-form-group [multiLayout]="true" [formGroup]="form4">
+    <fdp-form-field #fl4 [id]="'languages'" [label]="'Programming Languages Known: '" zone="zLeft" rank="1">
+        <fdp-checkbox-group
+            [list]="languages"
+            [isInline]="true"
+            [name]="'languages'"
+            [formControl]="fl4.formControl"
+        ></fdp-checkbox-group>
+    </fdp-form-field>
+</fdp-form-group>
+<span style="margin-left: 2rem;">Seasons: {{ form4.controls.languages.value }}</span>
+<br />
+<br />
+
+<p>Pre-selection based on value passed</p>
+<fdp-form-group [multiLayout]="true" [formGroup]="form5">
+    <fdp-form-field #fl5 [id]="'currency'" [label]="'Currencies in country: '" zone="zLeft" rank="1">
+        <fdp-checkbox-group
+            [list]="countryCurrency"
+            [value]="currency"
+            [name]="'currencies'"
+            [contentDensity]="'compact'"
+            [formControl]="fl5.formControl"
+        ></fdp-checkbox-group>
+    </fdp-form-field>
+</fdp-form-group>
+<span style="margin-left: 2rem;">Currencies: {{ form5.controls.currency.value }}</span>
+
+<br />
+<br />
+<p>Disabled checkbox group</p>
+<fdp-form-group [multiLayout]="true" [formGroup]="form6">
+    <fdp-form-field #fl6 [id]="'currency'" [label]="'Currencies in country: '" zone="zLeft" rank="1">
+        <fdp-checkbox-group
+            [list]="countryCurrency"
+            [disabled]="true"
+            [name]="'currencies'"
+            [formControl]="fl6.formControl"
+        ></fdp-checkbox-group>
+    </fdp-form-field>
+</fdp-form-group>

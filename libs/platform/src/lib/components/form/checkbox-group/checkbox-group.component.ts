@@ -1,14 +1,11 @@
 import { NgControl, NgForm } from '@angular/forms';
 import {
-    AfterContentInit,
-    AfterViewInit,
     Component,
     ContentChildren,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     EventEmitter,
     Input,
-    OnInit,
     Optional,
     Output,
     QueryList,
@@ -18,7 +15,7 @@ import {
 } from '@angular/core';
 import { CollectionBaseInput } from '../collection-base.input';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
-import { SelectItem } from '../../../domain/data-model';
+import { PlatformCheckboxChange } from '../checkbox/checkbox.component';
 import { FormFieldControl } from '../form-control';
 
 /**
@@ -35,9 +32,9 @@ import { FormFieldControl } from '../form-control';
     encapsulation: ViewEncapsulation.None,
     providers: [{ provide: FormFieldControl, useExisting: CheckboxGroupComponent, multi: true }]
 })
-export class CheckboxGroupComponent extends CollectionBaseInput implements AfterContentInit, AfterViewInit, OnInit {
+export class CheckboxGroupComponent extends CollectionBaseInput {
     /**
-     * value for selected checkboxes. can be String or Array
+     * value for selected checkboxes.
      */
     @Input()
     get value(): any {
@@ -74,7 +71,7 @@ export class CheckboxGroupComponent extends CollectionBaseInput implements After
     viewCheckboxes: QueryList<CheckboxComponent>;
 
     @Output()
-    readonly change: EventEmitter<SelectItem | string> = new EventEmitter<SelectItem | string>();
+    readonly groupValueChange: EventEmitter<PlatformCheckboxChange> = new EventEmitter<PlatformCheckboxChange>();
 
     constructor(
         private _changeDetector: ChangeDetectorRef,
@@ -84,30 +81,15 @@ export class CheckboxGroupComponent extends CollectionBaseInput implements After
         super(_changeDetector, ngcontrol, ngForm);
     }
 
-    ngOnInit(): void {
-        console.log('ngOnInit contentCheckboxes: ', this.contentCheckboxes);
-        console.log('ngOnInit viewCheckboxes: ', this.viewCheckboxes);
-    }
-
-    ngAfterContentInit(): void {
-        console.log('ngAfterContentInit contentCheckboxes: ', this.contentCheckboxes);
-        console.log('ngAfterContentInit viewCheckboxes: ', this.viewCheckboxes);
-    }
-
-    ngAfterViewInit(): void {
-        console.log('ngAfterViewInit contentCheckboxes: ', this.contentCheckboxes);
-        console.log('ngAfterViewInit viewCheckboxes: ', this.viewCheckboxes);
-    }
-
     writeValue(value: any): void {
-        console.log('writevalue value: ', value);
         super.writeValue(value);
     }
 
     /**
-     * @param event ,can be keyboard event, mouseevent, touchevent etc.
+     * Raises event when Checkbox group value changes.
+     * @param event: event raised on change of checkbox control value
      */
-    public stateChange(event: any): void {
-        console.log('checkbox state changed');
+    public groupChange(event: PlatformCheckboxChange): void {
+        this.groupValueChange.emit(event);
     }
 }

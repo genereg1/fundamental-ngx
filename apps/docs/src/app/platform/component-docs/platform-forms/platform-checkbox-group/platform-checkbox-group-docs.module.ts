@@ -7,6 +7,9 @@ import { SharedDocumentationModule } from '../../../../documentation/shared-docu
 import { PlatformCheckboxGroupDocsComponent } from './platform-checkbox-group-docs.component';
 import { PlatformCheckboxGroupHeaderComponent } from './platform-checkbox-group-header/platform-checkbox-group-header.component';
 import { PlatformCheckboxGroupExampleComponent } from './platform-checkbox-group-examples/platform-checkbox-group-examples.component';
+import { PlatformCheckboxGroupListComponent } from './platform-checkbox-group-examples/platform-checkbox-group-list.component';
+import { PlatformCheckboxGroupContentCheckboxComponent } from './platform-checkbox-group-examples/platform-checkbox-group-content-checkbox.component';
+
 
 const routes: Routes = [
     {
@@ -31,7 +34,9 @@ const routes: Routes = [
     declarations: [
         PlatformCheckboxGroupDocsComponent,
         PlatformCheckboxGroupHeaderComponent,
-        PlatformCheckboxGroupExampleComponent
+        PlatformCheckboxGroupExampleComponent,
+        PlatformCheckboxGroupListComponent,
+        PlatformCheckboxGroupContentCheckboxComponent
     ]
 })
 export class PlatformCheckboxGroupDocsModule {}

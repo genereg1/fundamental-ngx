@@ -7,7 +7,7 @@
                     context: {
                         id: id + i,
                         name: name,
-                        checkboxValue: checkbox.value,
+                        checkboxValue: checkbox.checkboxValue,
                         contentDensity: contentDensity,
                         labeltext: checkbox.label,
                         disabled: disabled || checkbox.disabled
@@ -17,9 +17,9 @@
             </ng-container>
         </ng-container>
     </ng-container>
-    <!-- <ng-container *ngIf="list">
+    <ng-container *ngIf="list">
         <ng-container *ngTemplateOutlet="listvalues"></ng-container>
-    </ng-container> -->
+    </ng-container>
 </fd-form-group>
 
 <ng-template #listvalues>
@@ -66,7 +66,7 @@
     let-labeltext="labeltext"
     let-checkboxDisabled="disabled"
 >
-    <!-- <fdp-checkbox
+    <fdp-checkbox
         [id]="id"
         [name]="name"
         [value]="checkboxValue"
@@ -74,8 +74,7 @@
         [contentDensity]="contentDensity"
         [disabled]="checkboxDisabled"
         [(ngModel)]="value"
-        (change)="stateChange($event)"
+        (change)="groupChange($event)"
     >
-    </fdp-checkbox> -->
-    {{ checkboxValue }}
+    </fdp-checkbox>
 </ng-template>
