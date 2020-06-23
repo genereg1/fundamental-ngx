@@ -8,32 +8,18 @@ import { SelectItem } from '@fundamental-ngx/platform';
 })
 export class PlatformCheckboxGroupListComponent {
     seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
-
     sports: string[] = ['cycling', 'running', 'visit gym', 'swimming'];
-    favsports: string[] = ['running', 'swimming'];
+    phoneslist: string[] = ['Samsung', 'Apple', 'OnePlus', 'Redmi'];
 
-    countryCurrency = [new Country('Australia', 'AUD'), new Country('India', 'INR'), new Country('USA', 'USD')];
-    currency = ['AUD', 'USD'];
-
-    languages = [
-        new LanguageKnown('Java', 'java', false),
-        new LanguageKnown('Javascript', 'javascript', true),
-        new LanguageKnown('Python', 'python', false),
-        new LanguageKnown('GoLang', 'go', true)
-    ];
+    // data passing to form
+    selectedPhones = { 'phones': ['Samsung', 'OnePlus'] };
 
     form1 = new FormGroup({});
     form2 = new FormGroup({});
     form3 = new FormGroup({});
-    form4 = new FormGroup({});
-    form5 = new FormGroup({});
-    form6 = new FormGroup({});
-}
 
-class Country implements SelectItem {
-    constructor(public label: string, public value: string) {}
-}
-
-class LanguageKnown implements SelectItem {
-    constructor(public label: string, public value: string, public disabled: boolean) {}
+    // template driven
+    countrySeason = '';
+    selectedSports = ['running', 'swimming'];
+    sportsDisabled = '';
 }

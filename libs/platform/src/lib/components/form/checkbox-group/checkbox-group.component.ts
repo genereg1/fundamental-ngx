@@ -82,7 +82,9 @@ export class CheckboxGroupComponent extends CollectionBaseInput {
     }
 
     writeValue(value: any): void {
-        super.writeValue(value);
+        if (value) {
+            super.writeValue(value);
+        }
     }
 
     /**
@@ -90,6 +92,7 @@ export class CheckboxGroupComponent extends CollectionBaseInput {
      * @param event: event raised on change of checkbox control value
      */
     public groupChange(event: PlatformCheckboxChange): void {
+        this.onTouched();
         this.groupValueChange.emit(event);
     }
 }

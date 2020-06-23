@@ -1,12 +1,15 @@
-<h3>Checkbox group created from passed checkboxes</h3>
-<fdp-form-group [multiLayout]="true" [formGroup]="form1">
-    <fdp-form-field #fl1 [id]="'fruits'" [label]="'My favourite fruits:'" zone="zLeft" rank="1">
-        <fdp-checkbox-group [name]="'fruits'" [value]="favourites" [formControl]="fl1.formControl">
-            <fdp-checkbox [value]="'apple'" [label]="'Apple'"></fdp-checkbox>
+<h3>Checkbox group created from passed checkboxes and value is required</h3>
+<fdp-form-group [multiLayout]="true" [formGroup]="form1" [object]="favourites">
+    <fdp-form-field #fl1 [id]="'fruitsEx'" [label]="'My favourite fruits:'" [required]="true" zone="zLeft" rank="1">
+        <fdp-checkbox-group [name]="'fruits'" [formControl]="fl1.formControl">
             <fdp-checkbox [value]="'banana'" [label]="'Banana'"></fdp-checkbox>
-            <fdp-checkbox [value]="'guava'" [label]="'Guava'"></fdp-checkbox>
-            <fdp-checkbox [value]="'papaya'" [label]="'Papaya'"></fdp-checkbox>
         </fdp-checkbox-group>
     </fdp-form-field>
+
+    <ng-template #i18n let-errors>
+        <ng-container *ngIf="errors.required">
+            <span>Value is required.</span>
+        </ng-container>
+    </ng-template>
 </fdp-form-group>
-<span style="margin-left: 2rem;">Favourites: {{ form1.controls.fruits.value }}</span>
+<span style="margin-left: 2rem;">Favourites: {{ form1.controls.fruitsEx.value }}</span>

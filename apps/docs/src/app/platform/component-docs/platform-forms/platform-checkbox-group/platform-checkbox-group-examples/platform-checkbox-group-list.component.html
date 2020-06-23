@@ -1,3 +1,4 @@
+<h3>Reactive Form Examples:</h3>
 <h3>Checkboxes created from given list of values</h3>
 <p>Inline checkboxes</p>
 <fdp-form-group [multiLayout]="true" [formGroup]="form1">
@@ -15,23 +16,19 @@
 <br />
 
 <p>Pre-selection based on value passed</p>
-<fdp-form-group [multiLayout]="true" [formGroup]="form2">
-    <fdp-form-field #fl2 [id]="'sports'" [label]="'Sports interested in: '" zone="zLeft" rank="1">
-        <fdp-checkbox-group
-            [list]="sports"
-            [name]="'sports'"
-            [value]="favsports"
-            [formControl]="fl2.formControl"
-        ></fdp-checkbox-group>
+<fdp-form-group [multiLayout]="true" [formGroup]="form2" [object]="selectedPhones">
+    <fdp-form-field #fl2 [id]="'phones'" [label]="'Phones interested in:'" zone="zLeft" rank="1">
+        <fdp-checkbox-group [list]="phoneslist" [name]="'brands'" [formControl]="fl2.formControl"></fdp-checkbox-group>
     </fdp-form-field>
 </fdp-form-group>
-<span style="margin-left: 2rem;">Sports: {{ form2.controls.sports.value }}</span>
+<span style="margin-left: 2rem;">Available brands: {{ form2.controls.phones.value }}</span>
 <br />
 <br />
 
+<!-- On usong Reactive form, disbaled will raise warning. it should be used like formcontrol('', disable: true) -->
 <p>Disabled checkbox group</p>
-<fdp-form-group [multiLayout]="true" [formGroup]="form3">
-    <fdp-form-field #fl3 [id]="'sports'" [label]="'Sports interested in: '" zone="zLeft" rank="1">
+<!-- <fdp-form-group [multiLayout]="true" [formGroup]="form3">
+    <fdp-form-field #fl3 [id]="'sportsDisabled'" [label]="'Disabled checkbox Group: '" zone="zLeft" rank="1">
         <fdp-checkbox-group
             [list]="sports"
             [name]="'sports'"
@@ -40,49 +37,45 @@
         ></fdp-checkbox-group>
     </fdp-form-field>
 </fdp-form-group>
-<br />
-<br />
+<br /> -->
 
-<h3>Checkboxes created from from list of selectItem Objects</h3>
+<separator></separator>
+
+<h3>Template Driven Form</h3>
+<h3>Checkboxes created from given list of values</h3>
 <p>Inline checkboxes</p>
-<fdp-form-group [multiLayout]="true" [formGroup]="form4">
-    <fdp-form-field #fl4 [id]="'languages'" [label]="'Programming Languages Known: '" zone="zLeft" rank="1">
+<fdp-form-group [multiLayout]="true">
+    <fdp-form-field [id]="'weather'" [label]="'Seasons in my country:'" zone="zLeft" rank="1">
         <fdp-checkbox-group
-            [list]="languages"
+            [list]="seasons"
+            [name]="'seasonsInIndia'"
             [isInline]="true"
-            [name]="'languages'"
-            [formControl]="fl4.formControl"
+            [(ngModel)]="countrySeason"
         ></fdp-checkbox-group>
     </fdp-form-field>
 </fdp-form-group>
-<span style="margin-left: 2rem;">Seasons: {{ form4.controls.languages.value }}</span>
+<span style="margin-left: 2rem;">Weather: {{ countrySeason }}</span>
 <br />
 <br />
 
 <p>Pre-selection based on value passed</p>
-<fdp-form-group [multiLayout]="true" [formGroup]="form5">
-    <fdp-form-field #fl5 [id]="'currency'" [label]="'Currencies in country: '" zone="zLeft" rank="1">
-        <fdp-checkbox-group
-            [list]="countryCurrency"
-            [value]="currency"
-            [name]="'currencies'"
-            [contentDensity]="'compact'"
-            [formControl]="fl5.formControl"
-        ></fdp-checkbox-group>
+<fdp-form-group [multiLayout]="true">
+    <fdp-form-field [id]="'sports'" [label]="'Sports interested in:'" zone="zLeft" rank="1">
+        <fdp-checkbox-group [list]="sports" [name]="'sports'" [(ngModel)]="selectedSports"></fdp-checkbox-group>
     </fdp-form-field>
 </fdp-form-group>
-<span style="margin-left: 2rem;">Currencies: {{ form5.controls.currency.value }}</span>
+<span style="margin-left: 2rem;">Sports: {{ selectedSports }}</span>
+<br />
+<br />
 
-<br />
-<br />
 <p>Disabled checkbox group</p>
-<fdp-form-group [multiLayout]="true" [formGroup]="form6">
-    <fdp-form-field #fl6 [id]="'currency'" [label]="'Currencies in country: '" zone="zLeft" rank="1">
+<fdp-form-group [multiLayout]="true">
+    <fdp-form-field [id]="'sportsDisabled'" [label]="'Disabled checkbox Group:'" zone="zLeft" rank="1">
         <fdp-checkbox-group
-            [list]="countryCurrency"
+            [list]="sports"
+            [name]="'sports'"
             [disabled]="true"
-            [name]="'currencies'"
-            [formControl]="fl6.formControl"
+            [(ngModel)]="sportsDisabled"
         ></fdp-checkbox-group>
     </fdp-form-field>
 </fdp-form-group>

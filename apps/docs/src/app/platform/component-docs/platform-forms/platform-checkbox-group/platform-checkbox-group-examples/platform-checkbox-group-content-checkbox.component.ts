@@ -6,8 +6,14 @@ import { FormGroup } from '@angular/forms';
     templateUrl: './platform-checkbox-group-content-checkbox.component.html'
 })
 export class PlatformCheckboxGroupContentCheckboxComponent {
-    fruits: string[] = ['Apple', 'Banana', 'Guava', 'Papaya'];
-    favourites = ['banana', 'guava'];
+    hobbies = { hobbies: ['coding', 'gardening'] };
 
     form1 = new FormGroup({});
+    form2 = new FormGroup({});
+    form3 = new FormGroup({});
+
+    // Template driven
+    subjects = '';
+    reptiles = ['Lizards', 'Snakes'];
+    disabledCountries = ''
 }

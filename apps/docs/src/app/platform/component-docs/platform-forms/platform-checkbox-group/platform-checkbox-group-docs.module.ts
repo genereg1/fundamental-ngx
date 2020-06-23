@@ -9,7 +9,7 @@ import { PlatformCheckboxGroupHeaderComponent } from './platform-checkbox-group-
 import { PlatformCheckboxGroupExampleComponent } from './platform-checkbox-group-examples/platform-checkbox-group-examples.component';
 import { PlatformCheckboxGroupListComponent } from './platform-checkbox-group-examples/platform-checkbox-group-list.component';
 import { PlatformCheckboxGroupContentCheckboxComponent } from './platform-checkbox-group-examples/platform-checkbox-group-content-checkbox.component';
-
+import { PlatformCheckboxGroupListObjectComponent } from './platform-checkbox-group-examples/platform-checkbox-group-list-object.component';
 
 const routes: Routes = [
     {
@@ -36,6 +36,7 @@ const routes: Routes = [
         PlatformCheckboxGroupHeaderComponent,
         PlatformCheckboxGroupExampleComponent,
         PlatformCheckboxGroupListComponent,
+        PlatformCheckboxGroupListObjectComponent,
         PlatformCheckboxGroupContentCheckboxComponent
     ]
 })

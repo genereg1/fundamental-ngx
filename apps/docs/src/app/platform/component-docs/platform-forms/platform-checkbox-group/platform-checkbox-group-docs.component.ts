@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import * as listCheckboxGroupHtml from '!raw-loader!./platform-checkbox-group-examples/platform-checkbox-group-list.component.html';
 import * as listCheckboxGroupTs from '!raw-loader!./platform-checkbox-group-examples/platform-checkbox-group-list.component.ts';
+import * as listObjectCheckboxGroupHtml from '!raw-loader!./platform-checkbox-group-examples/platform-checkbox-group-list-object.component.html';
+import * as listObjectCheckboxGroupTs from '!raw-loader!./platform-checkbox-group-examples/platform-checkbox-group-list-object.component.ts';
 import * as contentCheckboxGroupHtml from '!raw-loader!./platform-checkbox-group-examples/platform-checkbox-group-content-checkbox.component.html';
 import * as contentCheckboxGroupTs from '!raw-loader!./platform-checkbox-group-examples/platform-checkbox-group-content-checkbox.component.ts';
 import * as checkboxGroupExampleHtml from '!raw-loader!./platform-checkbox-group-examples/platform-checkbox-group-example.component.html';
@@ -23,6 +25,20 @@ export class PlatformCheckboxGroupDocsComponent {
             code: listCheckboxGroupTs,
             fileName: 'platform-checkbox-group-list',
             component: 'PlatformCheckboxGroupListComponent'
+        }
+    ];
+
+    listObjectCheckboxGroup: ExampleFile[] = [
+        {
+            language: 'html',
+            code: listObjectCheckboxGroupHtml,
+            fileName: 'platform-checkbox-group-list-object'
+        },
+        {
+            language: 'typescript',
+            code: listObjectCheckboxGroupTs,
+            fileName: 'platform-checkbox-group-list-object',
+            component: 'PlatformCheckboxGroupListObjectComponent'
         }
     ];
 
