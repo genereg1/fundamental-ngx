@@ -7,6 +7,7 @@
             [list]="languages"
             [isInline]="true"
             [name]="'languages'"
+            [contentDensity]="'compact'"
             [formControl]="fl1.formControl"
         ></fdp-checkbox-group>
     </fdp-form-field>
@@ -29,18 +30,23 @@
 
 <br />
 <br />
-<!-- On usong Reactive form, disbaled will raise warning. it should be used like formcontrol('', disable: true) -->
 <p>Disabled checkbox group</p>
-<!-- <fdp-form-group [multiLayout]="true" [formGroup]="form6">
-    <fdp-form-field #fl3 [id]="'disabled currencies'" [label]="'Disabled checkbox Group: '" zone="zLeft" rank="1">
+<fdp-form-group [multiLayout]="true" [formGroup]="form6">
+    <fdp-form-field
+        #fl3
+        [id]="'disabled currencies'"
+        [label]="'Disabled checkbox Group: '"
+        [disabled]="true"
+        zone="zLeft"
+        rank="1"
+    >
         <fdp-checkbox-group
             [list]="countryCurrency"
-            [disabled]="true"
             [name]="'currencies'"
             [formControl]="fl3.formControl"
         ></fdp-checkbox-group>
     </fdp-form-field>
-</fdp-form-group> -->
+</fdp-form-group>
 
 <separator></separator>
 

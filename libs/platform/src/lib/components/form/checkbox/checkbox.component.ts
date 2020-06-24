@@ -117,9 +117,7 @@ export class CheckboxComponent extends BaseInput implements AfterViewInit {
         private _ngZone: NgZone
     ) {
         super(_changeDetector, ngControl, ngForm);
-        this.id = `fdp-checkbox-${nextUniqueId}`;
-        this.name = `fdp-checkbox-${nextUniqueId}`;
-        nextUniqueId = nextUniqueId + 1;
+        this.name = `fdp-checkbox-${nextUniqueId++}`;
     }
 
     /** ControlvalueAccessor */

@@ -1,5 +1,5 @@
-import { NgControl, NgForm } from '@angular/forms';
 import {
+    AfterViewInit,
     Component,
     ContentChildren,
     ChangeDetectionStrategy,
@@ -13,6 +13,7 @@ import {
     ViewEncapsulation,
     ViewChildren
 } from '@angular/core';
+import { NgControl, NgForm } from '@angular/forms';
 import { CollectionBaseInput } from '../collection-base.input';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { PlatformCheckboxChange } from '../checkbox/checkbox.component';
@@ -32,11 +33,10 @@ import { FormFieldControl } from '../form-control';
     encapsulation: ViewEncapsulation.None,
     providers: [{ provide: FormFieldControl, useExisting: CheckboxGroupComponent, multi: true }]
 })
-export class CheckboxGroupComponent extends CollectionBaseInput {
+export class CheckboxGroupComponent extends CollectionBaseInput implements AfterViewInit {
     /**
      * value for selected checkboxes.
      */
-    @Input()
     get value(): any {
         return super.getValue();
     }
@@ -49,18 +49,6 @@ export class CheckboxGroupComponent extends CollectionBaseInput {
      */
     @Input()
     isInline: boolean = false;
-
-    /**
-     * None value checkbox created
-     */
-    @Input()
-    hasNoValue: boolean = false;
-
-    /**
-     * Label for None value checkbox
-     */
-    @Input()
-    noValueLabel: string = 'None';
 
     /** Children checkboxes passed as content */
     @ContentChildren(CheckboxComponent)
@@ -75,10 +63,10 @@ export class CheckboxGroupComponent extends CollectionBaseInput {
 
     constructor(
         private _changeDetector: ChangeDetectorRef,
-        @Optional() @Self() public ngcontrol: NgControl,
+        @Optional() @Self() public ngControl: NgControl,
         @Optional() @Self() public ngForm: NgForm
     ) {
-        super(_changeDetector, ngcontrol, ngForm);
+        super(_changeDetector, ngControl, ngForm);
     }
 
     writeValue(value: any): void {
@@ -88,8 +76,25 @@ export class CheckboxGroupComponent extends CollectionBaseInput {
     }
 
     /**
+     * joining CBG control and checkboxes control.
+     * So same validation applies on each checkboxes.
+     */
+    ngAfterViewInit(): void {
+        if (this.viewCheckboxes && this.viewCheckboxes.length > 0) {
+            this.viewCheckboxes.forEach((checkbox) => {
+                checkbox.ngControl = this.ngControl;
+            });
+        }
+        if (this.contentCheckboxes && this.contentCheckboxes.length > 0) {
+            this.contentCheckboxes.forEach((checkbox) => {
+                checkbox.ngControl = this.ngControl;
+            });
+        }
+    }
+
+    /**
      * Raises event when Checkbox group value changes.
-     * @param event: event raised on change of checkbox control value
+     * @param event: contains checkbox and event in a PlatformCheckboxChange class object.
      */
     public groupChange(event: PlatformCheckboxChange): void {
         this.onTouched();

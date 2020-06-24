@@ -23,22 +23,6 @@
 </fd-form-group>
 
 <ng-template #listvalues>
-    <ng-container *ngIf="hasNoValue">
-        <ng-container
-            *ngTemplateOutlet="
-                checkboxtmpt;
-                context: {
-                    id: id,
-                    name: name,
-                    checkboxValue: 'None',
-                    contentDensity: contentDensity,
-                    labeltext: noValueLabel,
-                    disabled: disabled
-                }
-            "
-        >
-        </ng-container>
-    </ng-container>
     <ng-container *ngFor="let item of list; let i = index">
         <ng-container
             *ngTemplateOutlet="
