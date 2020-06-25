@@ -1,8 +1,18 @@
-<header>Checkbox Group Examples</header>
+<header>Checkbox Group</header>
 <description>
-    The checkbox group Component is used to display multiple checkboxes and bind as a single form field.
+    Checkbox Group creates multiple checkboxes by using list of values or by passing individual checkboxes. It handles
+    all these checkboxes together and selection of one or more checkboxes is possible as a form field. It is implemented
+    to work with <a [routerLink]="'/platform/form'">Platform Form</a>.
+    <h3>Platform specific enhancements:</h3>
+    <ul>
+        <li>Checkbox group can create multiple checkboxes by using list of string values.</li>
+        <li>Multiple checkboxes can be created using list of SelectItem Objects.</li>
+        <li>Checkbox group can be created by passing checkboxes under checkbox group.</li>
+        <li>It is implemented to work with <a [routerLink]="'/platform/form'">Platform Form</a>.</li>
+        <li>Checkbox group creates Platform Checkboxes.</li>
+    </ul>
 </description>
-<import module="PlatformCheckboxGroupModule"></import>
+<import module="PlatformCheckboxGroupModule, SelectItem"></import> <br />
 
 <fd-header-tabs></fd-header-tabs>
 <router-outlet></router-outlet>

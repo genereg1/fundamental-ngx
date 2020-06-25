@@ -171,7 +171,10 @@ export class FormFieldComponent
     formControl: FormControl;
     protected _destroyed = new Subject<void>();
 
-    constructor(private _cd: ChangeDetectorRef) {}
+    constructor(private _cd: ChangeDetectorRef) {
+        // provides capability to make a field disabled. useful in reactive form approach.
+        this.formControl = new FormControl({ value: null, disabled: this.disabled });
+    }
 
     ngOnInit(): void {
         if (this.columns && (this.columns < 1 || this.columns > 12)) {
@@ -181,9 +184,6 @@ export class FormFieldComponent
         if (this.fluid) {
             this.columns = 12;
         }
-        // provides capability to make a field disabled. useful in reactive form approach.
-        // property disabled is not visible in constructor, so creating formcontrol in ngOnInit.
-        this.formControl = new FormControl({ value: null, disabled: this.disabled });
     }
 
     ngAfterContentChecked(): void {
@@ -257,6 +257,11 @@ export class FormFieldComponent
         if (this._control && this._control.ngControl && this._control.ngControl.control) {
             if (this.required) {
                 this.validators.push(Validators.required);
+            }
+
+            // if form control is disabled, in reactive form approach
+            if (this.disabled) {
+                this._control.ngControl.control.disable();
             }
 
             this.formGroup.addControl(this.id, this._control.ngControl.control);

@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     Component,
     ContentChildren,
     ChangeDetectionStrategy,
@@ -33,7 +32,7 @@ import { FormFieldControl } from '../form-control';
     encapsulation: ViewEncapsulation.None,
     providers: [{ provide: FormFieldControl, useExisting: CheckboxGroupComponent, multi: true }]
 })
-export class CheckboxGroupComponent extends CollectionBaseInput implements AfterViewInit {
+export class CheckboxGroupComponent extends CollectionBaseInput {
     /**
      * value for selected checkboxes.
      */
@@ -73,30 +72,29 @@ export class CheckboxGroupComponent extends CollectionBaseInput implements After
         if (value) {
             super.writeValue(value);
         }
+        this._changeDetector.detectChanges();
     }
 
     /**
-     * joining CBG control and checkboxes control.
-     * So same validation applies on each checkboxes.
-     */
-    ngAfterViewInit(): void {
-        if (this.viewCheckboxes && this.viewCheckboxes.length > 0) {
-            this.viewCheckboxes.forEach((checkbox) => {
-                checkbox.ngControl = this.ngControl;
-            });
-        }
-        if (this.contentCheckboxes && this.contentCheckboxes.length > 0) {
-            this.contentCheckboxes.forEach((checkbox) => {
-                checkbox.ngControl = this.ngControl;
-            });
-        }
-    }
-
-    /**
-     * Raises event when Checkbox group value changes.
+     * raises event when Checkbox group value changes.
      * @param event: contains checkbox and event in a PlatformCheckboxChange class object.
      */
-    public groupChange(event: PlatformCheckboxChange): void {
+    public groupValueChanges(event: PlatformCheckboxChange): void {
+        if (this.ngControl.invalid && this.ngControl.touched) {
+            if (this.viewCheckboxes && this.viewCheckboxes.length > 0) {
+                this.viewCheckboxes.forEach((checkbox) => {
+                    checkbox.ngControl?.control.setErrors(this.ngControl.errors);
+                    checkbox.ngControl?.control.markAsTouched();
+                });
+            }
+            if (this.contentCheckboxes && this.contentCheckboxes.length > 0) {
+                this.contentCheckboxes.forEach((checkbox) => {
+                    checkbox.ngControl?.control.setErrors(this.ngControl.errors);
+                    checkbox.ngControl?.control.markAsTouched();
+                });
+            }
+        }
+
         this.onTouched();
         this.groupValueChange.emit(event);
     }

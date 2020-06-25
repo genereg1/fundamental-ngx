@@ -12,7 +12,7 @@ export class PlatformCheckboxGroupListComponent {
     phoneslist: string[] = ['Samsung', 'Apple', 'OnePlus', 'Redmi'];
 
     // data passing to form
-    selectedPhones = { 'phones': ['Samsung', 'OnePlus'] };
+    selectedPhones = { phones: ['Samsung', 'OnePlus'] };
 
     form1 = new FormGroup({});
     form2 = new FormGroup({});
