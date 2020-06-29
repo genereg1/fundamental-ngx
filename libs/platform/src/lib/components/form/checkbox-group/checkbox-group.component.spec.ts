@@ -13,14 +13,7 @@ import { By } from '@angular/platform-browser';
     selector: 'fdp-cbg-reactive-test',
     template: `
         <fdp-form-group [multiLayout]="true" [formGroup]="form1" [object]="formData">
-            <fdp-form-field
-                #fl1
-                [id]="'phones'"
-                [label]="'Phones interested in:'"
-                zone="zLeft"
-                rank="1"
-                [required]="true"
-            >
+            <fdp-form-field #fl1 [id]="'phones'" [label]="'Phones interested in:'" zone="zLeft" rank="1">
                 <fdp-checkbox-group
                     [list]="phoneslist"
                     [name]="'brands'"
@@ -28,7 +21,7 @@ import { By } from '@angular/platform-browser';
                 ></fdp-checkbox-group>
             </fdp-form-field>
 
-            <fdp-form-field #fl2 [id]="'visited'" [label]="'Country visited: '" zone="zLeft" rank="1" [required]="true">
+            <fdp-form-field #fl2 [id]="'visited'" [label]="'Country visited: '" zone="zLeft" rank="1">
                 <fdp-checkbox-group
                     [list]="countryVisited"
                     [name]="'visited'"
@@ -36,7 +29,7 @@ import { By } from '@angular/platform-browser';
                 ></fdp-checkbox-group>
             </fdp-form-field>
 
-            <fdp-form-field #fl3 [id]="'hobbies'" [label]="'My Hobbies:'" zone="zLeft" rank="1" [required]="true">
+            <fdp-form-field #fl3 [id]="'hobbies'" [label]="'My Hobbies:'" zone="zLeft" rank="1">
                 <fdp-checkbox-group [name]="'hobby'" [formControl]="fl3.formControl">
                     <fdp-checkbox [value]="'cooking'" [label]="'Cooking'"></fdp-checkbox>
                     <fdp-checkbox [value]="'painting'" [label]="'Painting'"></fdp-checkbox>
@@ -45,14 +38,7 @@ import { By } from '@angular/platform-browser';
                 </fdp-checkbox-group>
             </fdp-form-field>
 
-            <fdp-form-field
-                #fl4
-                [id]="'language'"
-                [label]="'Languages Known: '"
-                zone="zLeft"
-                rank="1"
-                [required]="true"
-            >
+            <fdp-form-field #fl4 [id]="'language'" [label]="'Languages Known: '" zone="zLeft" rank="1">
                 <fdp-checkbox-group
                     [list]="languages"
                     [name]="'language'"
@@ -60,7 +46,7 @@ import { By } from '@angular/platform-browser';
                 ></fdp-checkbox-group>
             </fdp-form-field>
 
-            <fdp-form-field #fl5 [id]="'fruits'" [label]="'Fruits:'" zone="zLeft" rank="1" [required]="true">
+            <fdp-form-field #fl5 [id]="'fruits'" [label]="'Fruits:'" zone="zLeft" rank="1">
                 <fdp-checkbox-group [name]="'fruits'" [formControl]="fl5.formControl">
                     <fdp-checkbox [value]="'apple'" [label]="'Apple'" [disabled]="true"></fdp-checkbox>
                     <fdp-checkbox [value]="'banana'" [label]="'Banana'"></fdp-checkbox>
@@ -68,12 +54,6 @@ import { By } from '@angular/platform-browser';
                     <fdp-checkbox [value]="'papaya'" [label]="'Papaya'"></fdp-checkbox>
                 </fdp-checkbox-group>
             </fdp-form-field>
-
-            <ng-template #i18n let-errors>
-                <ng-container *ngIf="errors.required">
-                    One or more options selection is necessary.
-                </ng-container>
-            </ng-template>
         </fdp-form-group>
     `
 })
@@ -95,7 +75,7 @@ class TestReactiveCheckboxGroupComponnet {
     checkboxGroups: QueryList<CheckboxGroupComponent>;
 }
 
-describe('CheckboxGroup component Reactive Form Test', () => {
+fdescribe('CheckboxGroup component Reactive Form Test', () => {
     let host: TestReactiveCheckboxGroupComponnet;
     let fixture: ComponentFixture<TestReactiveCheckboxGroupComponnet>;
 
@@ -150,33 +130,15 @@ describe('CheckboxGroup component Reactive Form Test', () => {
         fixture.detectChanges();
 
         expect(host.form1.controls.phones.value).toEqual(['Samsung', 'Apple']);
-    });
 
-    it('should show error, when all checkboxes are unchecked. checkboxes from list of given string values', async () => {
-        await wait(fixture);
-        fixture.detectChanges();
-        const fdpCheckboxElem = fixture.debugElement.queryAll(By.css('.fd-checkbox__label'));
-
-        // pre-select test
-        expect(host.form1.controls.phones.value).toEqual(['Samsung', 'OnePlus']);
-
-        // select checkbox on click
         fdpCheckboxElem[0].nativeElement.click();
         await wait(fixture);
         fixture.detectChanges();
 
-        fdpCheckboxElem[2].nativeElement.click();
-        await wait(fixture);
+        fdpCheckboxElem[1].nativeElement.click();
         fixture.detectChanges();
 
         expect(host.form1.controls.phones.value).toEqual([]);
-
-        // Error validation.
-        expect(host.form1.controls.phones.invalid).toBeTruthy();
-
-        // error state set to checkbox.
-        const inputElem = fixture.debugElement.queryAll(By.css('.fd-checkbox'))[2];
-        expect(inputElem.nativeElement.getAttribute('ng-reflect-ng-class')).toEqual('is-error');
     });
 
     // test cases for checbox group created from list of selectItem Objects.
@@ -207,36 +169,7 @@ describe('CheckboxGroup component Reactive Form Test', () => {
         expect(host.form1.controls.visited.value).toEqual(['Australia']);
     });
 
-    it('should show error, when all checkboxes are unchecked. checkboxes from list of given selectItem Objects', async () => {
-        await wait(fixture);
-        fixture.detectChanges();
-        const fdpCheckboxElem = fixture.debugElement.queryAll(By.css('.fd-checkbox__label'));
-
-        // pre-select test
-        expect(host.form1.controls.visited.value).toEqual(['India', 'USA']);
-
-        // select checkbox on click
-        fdpCheckboxElem[5].nativeElement.click();
-        await wait(fixture);
-        fixture.detectChanges();
-
-        fdpCheckboxElem[6].nativeElement.click();
-        await wait(fixture);
-        fixture.detectChanges();
-
-        expect(host.form1.controls.visited.value).toEqual([]);
-
-        // Error validation.
-        expect(host.form1.controls.visited.invalid).toBeTruthy();
-
-        // error state set to checkbox.
-        const inputElem = fixture.debugElement.queryAll(By.css('.fd-checkbox'))[6];
-        expect(inputElem.nativeElement.getAttribute('ng-reflect-ng-class')).toEqual('is-error');
-    });
-
     // checkbox group created from passed checkboxes.
-
-    // test cases for checbox group created from list of selectItem Objects.
     it('should create checkbox group from passed checkboxes', async () => {
         await wait(fixture);
         fixture.detectChanges();
@@ -268,33 +201,6 @@ describe('CheckboxGroup component Reactive Form Test', () => {
         expect(host.form1.controls.hobbies.value).toEqual(['cooking', 'painting']);
     });
 
-    it('should show error, when all checkboxes are unchecked.checkbox group created from passed checkboxes.', async () => {
-        await wait(fixture);
-        fixture.detectChanges();
-        const fdpCheckboxElem = fixture.debugElement.queryAll(By.css('.fd-checkbox__label'));
-
-        // pre-select test
-        expect(host.form1.controls.hobbies.value).toEqual(['coding', 'gardening']);
-
-        // select checkbox on click
-        fdpCheckboxElem[9].nativeElement.click();
-        await wait(fixture);
-        fixture.detectChanges();
-
-        fdpCheckboxElem[10].nativeElement.click();
-        await wait(fixture);
-        fixture.detectChanges();
-
-        expect(host.form1.controls.hobbies.value).toEqual([]);
-
-        // Error validation.
-        expect(host.form1.controls.hobbies.invalid).toBeTruthy();
-
-        // error state set to checkbox.
-        const inputElem = fixture.debugElement.queryAll(By.css('.fd-checkbox'))[10];
-        expect(inputElem.nativeElement.getAttribute('ng-reflect-ng-class')).toEqual('is-error');
-    });
-
     it('should create checkbox group with enabled and disabled checkboxes from SelectItem object', async () => {
         await wait(fixture);
         fixture.detectChanges();
@@ -322,18 +228,11 @@ describe('CheckboxGroup component Reactive Form Test', () => {
     selector: 'fdp-cbg-template-driven-test',
     template: `
         <fdp-form-group [multiLayout]="true">
-            <fdp-form-field
-                #fl1
-                [id]="'phones'"
-                [label]="'Phones interested in:'"
-                zone="zLeft"
-                rank="1"
-                [required]="true"
-            >
+            <fdp-form-field #fl1 [id]="'phones'" [label]="'Phones interested in:'" zone="zLeft" rank="1">
                 <fdp-checkbox-group [list]="phoneslist" [name]="'brands'" [(ngModel)]="phones"></fdp-checkbox-group>
             </fdp-form-field>
 
-            <fdp-form-field #fl2 [id]="'visited'" [label]="'Country visited: '" zone="zLeft" rank="1" [required]="true">
+            <fdp-form-field #fl2 [id]="'visited'" [label]="'Country visited: '" zone="zLeft" rank="1">
                 <fdp-checkbox-group
                     [list]="countryVisited"
                     [name]="'visited'"
@@ -341,7 +240,7 @@ describe('CheckboxGroup component Reactive Form Test', () => {
                 ></fdp-checkbox-group>
             </fdp-form-field>
 
-            <fdp-form-field #fl3 [id]="'hobbies'" [label]="'My Hobbies:'" zone="zLeft" rank="1" [required]="true">
+            <fdp-form-field #fl3 [id]="'hobbies'" [label]="'My Hobbies:'" zone="zLeft" rank="1">
                 <fdp-checkbox-group [name]="'hobby'" [(ngModel)]="hobbies">
                     <fdp-checkbox [value]="'cooking'" [label]="'Cooking'"></fdp-checkbox>
                     <fdp-checkbox [value]="'painting'" [label]="'Painting'"></fdp-checkbox>
@@ -350,11 +249,11 @@ describe('CheckboxGroup component Reactive Form Test', () => {
                 </fdp-checkbox-group>
             </fdp-form-field>
 
-            <fdp-form-field [id]="'language'" [label]="'Languages Known: '" zone="zLeft" rank="1" [required]="true">
+            <fdp-form-field [id]="'language'" [label]="'Languages Known: '" zone="zLeft" rank="1">
                 <fdp-checkbox-group [list]="languages" [name]="'language'" [(ngModel)]="language"></fdp-checkbox-group>
             </fdp-form-field>
 
-            <fdp-form-field [id]="'fruits'" [label]="'Fruits:'" zone="zLeft" rank="1" [required]="true">
+            <fdp-form-field [id]="'fruits'" [label]="'Fruits:'" zone="zLeft" rank="1">
                 <fdp-checkbox-group [name]="'fruits'" [(ngModel)]="fruits">
                     <fdp-checkbox [value]="'apple'" [label]="'Apple'" [disabled]="true"></fdp-checkbox>
                     <fdp-checkbox [value]="'banana'" [label]="'Banana'"></fdp-checkbox>
@@ -362,12 +261,6 @@ describe('CheckboxGroup component Reactive Form Test', () => {
                     <fdp-checkbox [value]="'papaya'" [label]="'Papaya'"></fdp-checkbox>
                 </fdp-checkbox-group>
             </fdp-form-field>
-
-            <ng-template #i18n let-errors>
-                <ng-container *ngIf="errors.required">
-                    One or more options selection is necessary.
-                </ng-container>
-            </ng-template>
         </fdp-form-group>
     `
 })
@@ -387,7 +280,7 @@ class TestTemplateDrivenCheckboxGroupComponnet {
     ];
 }
 
-describe('Checkbox Group Component Template driven Form Tests', () => {
+fdescribe('Checkbox Group Component Template driven Form Tests', () => {
     let host: TestTemplateDrivenCheckboxGroupComponnet;
     let fixture: ComponentFixture<TestTemplateDrivenCheckboxGroupComponnet>;
 
@@ -419,6 +312,12 @@ describe('Checkbox Group Component Template driven Form Tests', () => {
         const fdpCheckboxElem = fixture.debugElement.queryAll(By.css('.fd-checkbox__label'));
 
         // pre-select test
+        const inputElem = fixture.debugElement.queryAll(By.css('.fd-checkbox'));
+
+        expect(inputElem[0].nativeElement.getAttribute('ng-reflect-model')).toEqual('true');
+        expect(inputElem[1].nativeElement.getAttribute('ng-reflect-model')).toEqual('false');
+        expect(inputElem[2].nativeElement.getAttribute('ng-reflect-model')).toEqual('true');
+        expect(inputElem[3].nativeElement.getAttribute('ng-reflect-model')).toEqual('false');
         expect(host.phones).toEqual(['Samsung', 'OnePlus']);
 
         // select checkbox on click
@@ -442,35 +341,16 @@ describe('Checkbox Group Component Template driven Form Tests', () => {
         fixture.detectChanges();
 
         expect(host.phones).toEqual(['Samsung', 'Apple']);
-    });
 
-    it('should show error, when all checkboxes are unchecked. checkboxes from list of given string values', async () => {
-        await wait(fixture);
-        fixture.detectChanges();
-        const fdpCheckboxElem = fixture.debugElement.queryAll(By.css('.fd-checkbox__label'));
-        const inputElem1 = fixture.debugElement.queryAll(By.css('.fd-checkbox'));
-
-        // pre-select test
-        expect(inputElem1[0].nativeElement.getAttribute('ng-reflect-model')).toEqual('true');
-        expect(inputElem1[1].nativeElement.getAttribute('ng-reflect-model')).toEqual('false');
-        expect(inputElem1[2].nativeElement.getAttribute('ng-reflect-model')).toEqual('true');
-        expect(inputElem1[3].nativeElement.getAttribute('ng-reflect-model')).toEqual('false');
-        expect(host.phones).toEqual(['Samsung', 'OnePlus']);
-
-        // select checkbox on click
         fdpCheckboxElem[0].nativeElement.click();
         await wait(fixture);
         fixture.detectChanges();
 
-        fdpCheckboxElem[2].nativeElement.click();
+        fdpCheckboxElem[1].nativeElement.click();
         await wait(fixture);
         fixture.detectChanges();
 
         expect(host.phones).toEqual([]);
-
-        // error state set to checkbox.
-        const inputElem2 = fixture.debugElement.queryAll(By.css('.fd-checkbox'))[2];
-        expect(inputElem2.nativeElement.getAttribute('ng-reflect-ng-class')).toEqual('is-error');
     });
 
     // test cases for checbox group created from list of selectItem Objects.
@@ -499,35 +379,15 @@ describe('Checkbox Group Component Template driven Form Tests', () => {
         fixture.detectChanges();
 
         expect(host.visited).toEqual(['Australia']);
-    });
 
-    it('should show error, when all checkboxes are unchecked. checkboxes from list of given selectItem Objects', async () => {
-        await wait(fixture);
-        fixture.detectChanges();
-        const fdpCheckboxElem = fixture.debugElement.queryAll(By.css('.fd-checkbox__label'));
-
-        // pre-select test
-        expect(host.visited).toEqual(['India', 'USA']);
-
-        // select checkbox on click
-        fdpCheckboxElem[5].nativeElement.click();
-        await wait(fixture);
-        fixture.detectChanges();
-
-        fdpCheckboxElem[6].nativeElement.click();
+        fdpCheckboxElem[4].nativeElement.click();
         await wait(fixture);
         fixture.detectChanges();
 
         expect(host.visited).toEqual([]);
-
-        // error state set to checkbox.
-        const inputElem = fixture.debugElement.queryAll(By.css('.fd-checkbox'))[6];
-        expect(inputElem.nativeElement.getAttribute('ng-reflect-ng-class')).toEqual('is-error');
     });
 
     // checkbox group created from passed checkboxes.
-
-    // test cases for checbox group created from list of selectItem Objects.
     it('should create checkbox group from passed checkboxes', async () => {
         await wait(fixture);
         fixture.detectChanges();
@@ -557,30 +417,6 @@ describe('Checkbox Group Component Template driven Form Tests', () => {
         fixture.detectChanges();
 
         expect(host.hobbies).toEqual(['cooking', 'painting']);
-    });
-
-    it('should show error, when all checkboxes are unchecked.checkbox group created from passed checkboxes.', async () => {
-        await wait(fixture);
-        fixture.detectChanges();
-        const fdpCheckboxElem = fixture.debugElement.queryAll(By.css('.fd-checkbox__label'));
-
-        // pre-select test
-        expect(host.hobbies).toEqual(['coding', 'gardening']);
-
-        // select checkbox on click
-        fdpCheckboxElem[9].nativeElement.click();
-        await wait(fixture);
-        fixture.detectChanges();
-
-        fdpCheckboxElem[10].nativeElement.click();
-        await wait(fixture);
-        fixture.detectChanges();
-
-        expect(host.hobbies).toEqual([]);
-
-        // error state set to checkbox.
-        const inputElem = fixture.debugElement.queryAll(By.css('.fd-checkbox'))[10];
-        expect(inputElem.nativeElement.getAttribute('ng-reflect-ng-class')).toEqual('is-error');
     });
 
     it('should create checkbox group with enabled and disabled checkboxes from SelectItem object', async () => {
