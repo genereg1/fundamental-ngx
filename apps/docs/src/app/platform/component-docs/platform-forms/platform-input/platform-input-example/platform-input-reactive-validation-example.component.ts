@@ -2,20 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'fdp-platform-input-reactive-form-validation-example',
-  templateUrl: './platform-input-reactive-validation-example.component.html'
+    selector: 'fdp-platform-input-reactive-form-validation-example',
+    templateUrl: './platform-input-reactive-validation-example.component.html'
 })
 export class PlatformInputReactiveValidationExampleComponent implements OnInit {
-
     formGroupRegister: FormGroup;
     submitted = false;
     validate = [Validators.requiredTrue];
-    constructor(private fb: FormBuilder) { }
-    
+    constructor(private fb: FormBuilder) {}
+
     ngOnInit() {
         this.formGroupRegister = new FormGroup({});
     }
-
 
     hasError() {
         return this.formGroupRegister.invalid && this.submitted;
@@ -25,7 +23,7 @@ export class PlatformInputReactiveValidationExampleComponent implements OnInit {
         // stop here if form is invalid
         if (this.formGroupRegister.invalid) {
             this.submitted = true;
-        return ;
+            return;
         }
 
         // display form values on success

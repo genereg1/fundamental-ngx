@@ -16,27 +16,22 @@
  *
  *
  */
-import { ChangeDetectionStrategy,
-         ChangeDetectorRef, 
-         Component, 
-         Input, 
-         Optional, 
-         Self, 
-         ViewChild, 
-         ElementRef, 
-         OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Input,
+    Optional,
+    Self,
+    ViewChild,
+    ElementRef,
+    OnInit
+} from '@angular/core';
 import { FormFieldControl, Status } from '../form-control';
 import { NgControl, NgForm } from '@angular/forms';
 import { BaseInput } from '../base.input';
-import { stateType } from '@fundamental-ngx/core';
 
-
-const VALID_INPUT_TYPES = [
-    'text',
-    'number',
-    'email',
-    'password'
-];
+const VALID_INPUT_TYPES = ['text', 'number', 'email', 'password'];
 
 export type InputType = 'text' | 'number' | 'email' | 'password';
 
@@ -49,12 +44,9 @@ export type InputType = 'text' | 'number' | 'email' | 'password';
     selector: 'fdp-input',
     templateUrl: 'input.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        { provide: FormFieldControl, useExisting: InputComponent, multi: true }
-    ]
+    providers: [{ provide: FormFieldControl, useExisting: InputComponent, multi: true }]
 })
 export class InputComponent extends BaseInput implements OnInit {
-
     /** defines the input type of the input. */
     @Input()
     type: InputType = 'text';
@@ -80,12 +72,11 @@ export class InputComponent extends BaseInput implements OnInit {
         return this.inputElement;
     }
 
-
-    constructor(protected _cd: ChangeDetectorRef,
-                @Optional() @Self() public ngControl: NgControl,
-                @Optional() @Self() public ngForm: NgForm) {
-
-
+    constructor(
+        protected _cd: ChangeDetectorRef,
+        @Optional() @Self() public ngControl: NgControl,
+        @Optional() @Self() public ngForm: NgForm
+    ) {
         super(_cd, ngControl, ngForm);
     }
 

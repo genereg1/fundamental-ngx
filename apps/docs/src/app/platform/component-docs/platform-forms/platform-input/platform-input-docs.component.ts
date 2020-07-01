@@ -7,14 +7,13 @@ import * as platformInputReactiveFormValidationTypesTsSrc from '!raw-loader!./pl
 
 import * as platformInputAutoCompleteFormValidationTypesSrc from '!raw-loader!./platform-input-example/platform-input-auto-complete-validation-example.component.html';
 import * as platformInputAutoCompleteFormValidationTypesTsSrc from '!raw-loader!./platform-input-example/platform-input-auto-complete-validation-example.component.ts';
-import { ExampleFile } from '../../../documentation/core-helpers/code-example/example-file';
+import { ExampleFile } from '../../../../documentation/core-helpers/code-example/example-file';
 
 @Component({
-  selector: 'fd-platform-input-docs',
-  templateUrl: './platform-input-docs.component.html'
+    selector: 'fd-platform-input-docs',
+    templateUrl: './platform-input-docs.component.html'
 })
 export class PlatformInputDocsComponent {
-
     defaultInputType: ExampleFile[] = [
         {
             language: 'html',
@@ -55,5 +54,4 @@ export class PlatformInputDocsComponent {
             component: 'PlatformInputAutoCompleteValidationExampleComponent'
         }
     ];
-
 }

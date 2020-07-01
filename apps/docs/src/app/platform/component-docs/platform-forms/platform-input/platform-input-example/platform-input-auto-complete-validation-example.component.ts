@@ -1,14 +1,12 @@
-import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { startWith, map } from 'rxjs/operators';
+import { Component, OnInit, TemplateRef, Input } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'fdp-platform-input-auto-complete-form-validation-example',
-  templateUrl: './platform-input-auto-complete-validation-example.component.html',
-  styleUrls: ['./platform-input-auto-complete-validation-example.component.scss']
+    selector: 'fdp-platform-input-auto-complete-form-validation-example',
+    templateUrl: './platform-input-auto-complete-validation-example.component.html',
+    styleUrls: ['./platform-input-auto-complete-validation-example.component.scss']
 })
 export class PlatformInputAutoCompleteValidationExampleComponent implements OnInit {
-
     submitted = false;
     inputText: string = '';
     state = false;
@@ -38,7 +36,7 @@ export class PlatformInputAutoCompleteValidationExampleComponent implements OnIn
     @Input()
     itemTemplate: TemplateRef<any>;
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder) {}
 
     ngOnInit() {
         this.options = this.sportsData;

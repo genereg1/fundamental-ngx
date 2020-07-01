@@ -80,13 +80,17 @@ export const ROUTES: Routes = [
             {
                 path: 'info-label',
                 loadChildren: () =>
-                    import('./component-docs/platform-info-label/platform-info-label-docs-module').then((m) => m.PlatformInfoLabelDocsModule)
+                    import('./component-docs/platform-info-label/platform-info-label-docs-module').then(
+                        (m) => m.PlatformInfoLabelDocsModule
+                    )
             },
             {
                 path: 'input',
                 loadChildren: () =>
-                    import('./component-docs/platform-input/platform-input-docs.module').then((m) => m.PlatformInputDocsModule)
-            },
+                    import('./component-docs/platform-forms/platform-input/platform-input-docs.module').then(
+                        (m) => m.PlatformInputDocsModule
+                    )
+            }
         ]
     }
 ];
