@@ -75,7 +75,7 @@ class TestReactiveCheckboxGroupComponnet {
     checkboxGroups: QueryList<CheckboxGroupComponent>;
 }
 
-fdescribe('CheckboxGroup component Reactive Form Test', () => {
+describe('CheckboxGroup component Reactive Form Test', () => {
     let host: TestReactiveCheckboxGroupComponnet;
     let fixture: ComponentFixture<TestReactiveCheckboxGroupComponnet>;
 
@@ -280,7 +280,7 @@ class TestTemplateDrivenCheckboxGroupComponnet {
     ];
 }
 
-fdescribe('Checkbox Group Component Template driven Form Tests', () => {
+describe('Checkbox Group Component Template driven Form Tests', () => {
     let host: TestTemplateDrivenCheckboxGroupComponnet;
     let fixture: ComponentFixture<TestTemplateDrivenCheckboxGroupComponnet>;
 
