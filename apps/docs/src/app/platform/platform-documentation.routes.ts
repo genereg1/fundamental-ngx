@@ -88,8 +88,7 @@ export const ROUTES: Routes = [
                 path: 'input',
                 loadChildren: () =>
                     import('./component-docs/platform-forms/platform-input/platform-input-docs.module').then(
-                        (m) => m.PlatformInputDocsModule
-                    )
+                        (m) => m.PlatformInputDocsModule)
             }
         ]
     }

@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.20.1-rc.10](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.9...v0.20.1-rc.10) (2020-07-13)
+
+### [0.20.1-rc.9](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.8...v0.20.1-rc.9) (2020-07-13)
+
+### [0.20.1-rc.8](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.7...v0.20.1-rc.8) (2020-07-12)
+
+### [0.20.1-rc.7](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.6...v0.20.1-rc.7) (2020-07-12)
+
+### [0.20.1-rc.6](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.5...v0.20.1-rc.6) (2020-07-12)
+
+### [0.20.1-rc.5](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.4...v0.20.1-rc.5) (2020-07-12)
+
+### [0.20.1-rc.4](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.3...v0.20.1-rc.4) (2020-07-10)
+
+
+### Features
+
+* implement fiori 3 table ([#2819](https://github.com/SAP/fundamental-ngx/issues/2819)) ([3783133](https://github.com/SAP/fundamental-ngx/commit/3783133b3ff201812819de95e2fd1075144d872c)), closes [#2621](https://github.com/SAP/fundamental-ngx/issues/2621) [#2650](https://github.com/SAP/fundamental-ngx/issues/2650) [#2652](https://github.com/SAP/fundamental-ngx/issues/2652) [#2752](https://github.com/SAP/fundamental-ngx/issues/2752) [#2771](https://github.com/SAP/fundamental-ngx/issues/2771)
+
+### [0.20.1-rc.3](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.2...v0.20.1-rc.3) (2020-07-10)
+
+### [0.20.1-rc.2](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.1...v0.20.1-rc.2) (2020-07-09)
+
+
+### Bug Fixes
+
+* **platform:** textarea as a component with counter and auto-grow features ([#2691](https://github.com/SAP/fundamental-ngx/issues/2691)) ([573614b](https://github.com/SAP/fundamental-ngx/commit/573614b8f0e1ce113e26f4624281c4df0bba982b))
+
+### [0.20.1-rc.1](https://github.com/SAP/fundamental-ngx/compare/v0.20.1-rc.0...v0.20.1-rc.1) (2020-07-09)
+
+### [0.20.1-rc.0](https://github.com/SAP/fundamental-ngx/compare/v0.20.0...v0.20.1-rc.0) (2020-07-09)
+
+
+### Bug Fixes
+
+* Create Step Input component matching Fiori3 ([#2782](https://github.com/SAP/fundamental-ngx/issues/2782)) ([77801c9](https://github.com/SAP/fundamental-ngx/commit/77801c9015c296a7099e4d68f8269cb4faec5f5f))
+
 ## [0.20.0](https://github.com/SAP/fundamental-ngx/compare/v0.20.0-rc.31...v0.20.0) (2020-07-08)
 
 ## [0.20.0-rc.31](https://github.com/SAP/fundamental-ngx/compare/v0.20.0-rc.30...v0.20.0-rc.31) (2020-07-08)
